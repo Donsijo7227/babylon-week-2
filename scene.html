@@ -40,12 +40,65 @@
         const createScene = function(){
             // STEP 8a: Create a new BABYLON scene, passing in the engine as an argument
             const scene = new BABYLON.Scene(engine)
-            BABYLON.MeshBuilder.CreateBox("box", {}); // Create box mesh object
- 
-            // const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 15, new BABYLON.Vector3(0, 0, 0)); // Add Arc Rotate Camera
-            // camera.attachControl(canvas, true); // Attach camera control to the canvas
+            const ground = BABYLON.MeshBuilder.CreateGround("ground",{height: 6, width: 8, subdivisions: 10});
+            const groundMaterial = new BABYLON.StandardMaterial("groundMaterial", scene);
+            groundMaterial.diffuseColor = new BABYLON.Color3(0, 1, 0);
+            ground.material = groundMaterial;
+
+           
+
+            const boxColor = new BABYLON.StandardMaterial("boxColor", scene);
+            boxColor.diffuseColor = new BABYLON.Color3(1,1,1)
+            
+            
+            const box1 = BABYLON.MeshBuilder.CreateBox("box", {}); // Create box mesh object
+            box1.position.y=0.5;
+            box1.position.x=-2;
+            box1.position.z=1;
+            box1.material =  boxColor;
+            const box2 = BABYLON.MeshBuilder.CreateBox("box", {}); // Create box mesh object
+            box2.position.y=1;
+            box2.position.x=-2;
+            box2.position.z=1;
+            const box3 = BABYLON.MeshBuilder.CreateBox("box", {}); // Create box mesh object
+            box3.position.y=1.5;
+            box3.position.x=-2;
+            box3.position.z=1;
+            const box4 = BABYLON.MeshBuilder.CreateBox("box", {}); // Create box mesh object
+            box4.position.y=2;
+            box4.position.x=-2;
+            box4.position.z=1;
+            const box5 = BABYLON.MeshBuilder.CreateBox("box", {}); // Create box mesh object
+            box5.position.y=2;
+            box5.position.x=-1;
+            box5.position.z=1;
+            const box6 = BABYLON.MeshBuilder.CreateBox("box", {}); // Create box mesh object
+            box6.position.y=2;
+            box6.position.x=0;
+            box6.position.z=1;
+            const box7 = BABYLON.MeshBuilder.CreateBox("box", {}); // Create box mesh object
+            box7.position.y=2;
+            box7.position.x=1;
+            box7.position.z=1;
+            const box8 = BABYLON.MeshBuilder.CreateBox("box", {}); // Create box mesh object
+            box8.position.y=2;
+            box8.position.x=2;
+            box8.position.z=1;
+            const box9 = BABYLON.MeshBuilder.CreateBox("box", {}); // Create box mesh object
+            box9.position.y=0.5;
+            box9.position.x=2;
+            box9.position.z=1;
+            const box10 = BABYLON.MeshBuilder.CreateBox("box", {}); // Create box mesh object
+            box10.position.y=1;
+            box10.position.x=2;
+            box10.position.z=1;
+        
+            const house = BABYLON.SceneLoader.Append("https://assets.babylonjs.com/meshes/", "haunted_house.glb",scene);
+            // house.scaling.y = 2;
+            const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 15, new BABYLON.Vector3(0, 0, 0)); // Add Arc Rotate Camera
+            camera.attachControl(canvas, true); // Attach camera control to the canvas
             // Replace the above camera with the below XR if you have a headset
-            const xr = scene.createDefaultXRExperienceAsync();
+            // const xr = scene.createDefaultXRExperienceAsync();
  
             const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
             // STEP 8b: Return the scene
